@@ -9,7 +9,7 @@ const parsedData = JSON.parse(localStorage.getItem(STORAGE_KEY));
 form.addEventListener('submit', onFormSubmit);
 form.addEventListener('input', throttle(onInputData), 500);
 
-outputData();
+// outputData();
 
 function onInputData(event) {
   formData[event.target.name] = event.target.value;
@@ -21,13 +21,4 @@ function onFormSubmit(event) {
   event.currentTarget.reset();
   localStorage.removeItem(STORAGE_KEY);
   console.log(parsedData);
-}
-
-function outputData() {
-  if (Object.keys(parsedData)) {
-    formData.map(({ element }) => {
-      document.querySelector(`[name = '${element}']`).value =
-        parsedData[element];
-    });
-  }
 }
