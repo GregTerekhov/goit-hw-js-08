@@ -30,9 +30,9 @@ function outputData() {
   }
 
   if (localStorage.keys) {
-    const formDataKeys = Object.entries(parsedData);
+    const formDataKeys = Object.entries(formData);
     formDataKeys.forEach(element => {
-      form.querySelector(`[name = '${element}']`).value = parsedData[element];
+      form.querySelector(`[name = '${element}']`).value = formData[element];
     });
   }
 }
