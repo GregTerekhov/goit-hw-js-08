@@ -9,16 +9,16 @@ outputData();
 form.addEventListener('submit', onFormSubmit);
 form.addEventListener('input', throttle(onInputData), 500);
 
+function onFormSubmit(event) {
+  event.preventDefault();
+  console.log(formData);
+  // event.currentTarget.reset();
+  localStorage.removeItem(STORAGE_KEY);
+}
+
 function onInputData(event) {
   formData[event.target.name] = event.target.value;
   localStorage.setItem(STORAGE_KEY, JSON.stringify(formData));
-}
-
-function onFormSubmit(event) {
-  event.preventDefault();
-  event.currentTarget.reset();
-  console.log(formData);
-  localStorage.removeItem(STORAGE_KEY);
 }
 
 function outputData() {
