@@ -10,8 +10,8 @@ form.addEventListener('input', throttle(onInputData), 500);
 
 function onFormSubmit(event) {
   event.preventDefault();
-  console.log((form.elements[event.target.name] = event.target.value));
   event.currentTarget.reset();
+  console.log(JSON.parse(localStorage.getItem(STORAGE_KEY)));
   localStorage.removeItem(STORAGE_KEY);
 }
 
