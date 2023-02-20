@@ -22,17 +22,12 @@ function onFormSubmit(event) {
 }
 
 function outputData() {
-  try {
-    const parsedData = localStorage.getItem(STORAGE_KEY);
-    return parsedData === null ? undefined : JSON.parse(parsedData);
-  } catch (error) {
-    console.error(error.message);
-  }
-
-  if (localStorage.keys) {
-    const formDataKeys = Object.entries(formData);
-    formDataKeys.forEach(element => {
-      form.querySelector(`[name = '${element}']`).value = formData[element];
+  let outputData = localStorage.getItem(STORAGE_KEY);
+  if (outputData) {
+    outputData = JSON.parse(outputData);
+    Object.entries(formData).forEach(([name, value]) => {
+      formData[name] = value;
+      form.elements[name].value = value;
     });
   }
 }
