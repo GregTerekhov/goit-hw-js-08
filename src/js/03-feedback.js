@@ -10,6 +10,7 @@ form.addEventListener('input', throttle(onInputData), 500);
 
 function onFormSubmit(event) {
   event.preventDefault();
+  console.log((form.elements[event.target.name] = event.target.value));
   event.currentTarget.reset();
   localStorage.removeItem(STORAGE_KEY);
 }
@@ -23,11 +24,14 @@ function onInputData(event) {
 
 function outputData() {
   let outputData = localStorage.getItem(STORAGE_KEY);
-  if (outputData) {
-    outputData = JSON.parse(outputData);
-    Object.entries(outputData).forEach(([name, value]) => {
-      form.elements[name].value = value;
-      console.log(outputData);
-    });
+  try {
+    if (outputData) {
+      outputData = JSON.parse(outputData);
+      Object.entries(outputData).forEach(([name, value]) => {
+        form.elements[name].value = value;
+      });
+    }
+  } catch (error) {
+    console.log(error.message);
   }
 }
